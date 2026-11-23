@@ -1,7 +1,9 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark cablenet-navbar">
   <div class="container">
+
     <!-- LOGO -->
-    <a class="navbar-brand cablenet-brand" href="/">
+    <a class="navbar-brand cablenet-brand" routerLink="/">
       <span class="brand-icon">
         <i class="bi bi-diagram-3-fill"></i>
       </span>
@@ -27,43 +29,78 @@
 
     <!-- NAVEGACION -->
     <div class="collapse navbar-collapse" id="navbarMenu">
+
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+        <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link active" href="#">
+          <a class="nav-link" routerLink="/">
+            <i class="bi bi-house-door me-1"></i>
             Inicio
           </a>
         </li>
 
+        <!-- CATALOGO -->
         <li class="nav-item">
           <a class="nav-link" routerLink="/catalogo">
-            Catalogo
+            <i class="bi bi-box-seam me-1"></i>
+            Catálogo
           </a>
         </li>
 
+        <!-- HISTORIAL DE PEDIDOS -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/historial">
+            <i class="bi bi-clock-history me-1"></i>
+            Historial de pedidos
+          </a>
+        </li>
+
+        <!-- HERRAMIENTAS -->
         <li class="nav-item">
           <a class="nav-link" href="#herramientas">
             Herramientas
           </a>
         </li>
 
+        <!-- NOSOTROS -->
         <li class="nav-item">
           <a class="nav-link" href="#nosotros">
             Nosotros
           </a>
         </li>
+
       </ul>
 
       <!-- ACCIONES -->
       <div class="navbar-actions">
-        <button class="btn btn-search" type="button" aria-label="Buscar">
+
+        <!-- BUSCAR -->
+        <button
+          class="btn btn-search"
+          type="button"
+          aria-label="Buscar"
+        >
           <i class="bi bi-search"></i>
         </button>
 
-        <button class="btn btn-cart" type="button" aria-label="Carrito">
+        <!-- CARRITO -->
+        <button
+          class="btn btn-cart"
+          type="button"
+          aria-label="Carrito"
+          routerLink="/carrito"
+        >
           <i class="bi bi-cart3"></i>
-          <span class="cart-count">0</span>
+
+          <span class="cart-count">
+            {{ cartCount() }}
+          </span>
         </button>
+
       </div>
+
     </div>
+
   </div>
 </nav>

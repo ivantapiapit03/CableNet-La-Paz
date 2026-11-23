@@ -1,3 +1,4 @@
+
 <div class="cart-container">
 
   <!-- ENCABEZADO -->
@@ -35,6 +36,7 @@
 
             <!-- INFORMACIÓN DEL PRODUCTO -->
             <div class="cart-product-info">
+
               <span class="product-brand">
                 {{ item.product.brand }}
               </span>
@@ -69,6 +71,7 @@
                 </button>
 
               </div>
+
             </div>
 
             <!-- SUBTOTAL Y ELIMINAR PRODUCTO -->
@@ -111,11 +114,13 @@
 
         <h2>Resumen del pedido</h2>
 
+        <!-- CANTIDAD DE PRODUCTOS -->
         <div class="summary-row">
           <span>Productos</span>
           <strong>{{ itemCount() }}</strong>
         </div>
 
+        <!-- SUBTOTAL -->
         <div class="summary-row">
           <span>Subtotal</span>
           <strong>
@@ -123,6 +128,7 @@
           </strong>
         </div>
 
+        <!-- ENVÍO -->
         <div class="summary-row">
           <span>Envío</span>
           <strong>Por coordinar</strong>
@@ -140,11 +146,13 @@
         <button
           type="button"
           class="btn-checkout"
+          routerLink="/pedido"
         >
           <i class="bi bi-clipboard-check"></i>
           Continuar pedido
         </button>
 
+        <!-- MENSAJE DE SEGURIDAD -->
         <div class="summary-security">
           <i class="bi bi-shield-check"></i>
           Revisa tu pedido antes de confirmarlo.

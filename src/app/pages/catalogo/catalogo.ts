@@ -1,11 +1,12 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ProductService } from '../../core/services/product.service';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css',
 })

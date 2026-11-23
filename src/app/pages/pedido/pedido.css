@@ -1,0 +1,492 @@
+
+/* =========================================
+   CABLENET LA PAZ - SOLICITUD DE PEDIDO
+========================================= */
+
+.order-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 45px 24px 70px;
+  color: #1e293b;
+}
+
+/* ENCABEZADO */
+
+.order-header {
+  margin-bottom: 35px;
+}
+
+.order-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.order-back:hover {
+  color: #2563eb;
+}
+
+.order-label {
+  display: block;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.order-header h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #172033;
+}
+
+.order-header p {
+  color: #64748b;
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+/* DISTRIBUCION */
+
+.order-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* TARJETAS */
+
+.order-form-card,
+.order-summary {
+  background: #ffffff;
+  border: 1px solid #e5eaf1;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+/* TITULO FORMULARIO */
+
+.form-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.form-heading-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 22px;
+}
+
+.form-heading h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #172033;
+}
+
+.form-heading p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* FORMULARIO */
+
+.order-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-group label span {
+  color: #dc2626;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  padding: 13px 15px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.field-error {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* BOTON ENVIAR */
+
+.btn-submit-order {
+  width: 100%;
+  border: none;
+  border-radius: 11px;
+  padding: 15px 20px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.btn-submit-order:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2);
+}
+
+.btn-submit-order:active {
+  transform: translateY(0);
+}
+
+.form-privacy {
+  text-align: center;
+  color: #64748b;
+  font-size: 12px;
+  margin: -5px 0 0;
+}
+
+/* RESUMEN */
+
+.order-summary {
+  position: sticky;
+  top: 25px;
+}
+
+.order-summary h2 {
+  font-size: 21px;
+  font-weight: 800;
+  color: #172033;
+  margin: 0 0 8px;
+}
+
+.summary-subtitle {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* PRODUCTOS */
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.order-item-image {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.order-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.order-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-item-info h3 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #334155;
+}
+
+.order-item-info span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.order-item > strong {
+  font-size: 13px;
+  color: #172033;
+  white-space: nowrap;
+}
+
+/* DIVISOR */
+
+.summary-divider {
+  border-top: 1px solid #e5eaf1;
+  margin: 20px 0;
+}
+
+/* TOTALES */
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  gap: 12px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.summary-row strong {
+  color: #334155;
+  font-weight: 700;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5eaf1;
+}
+
+.summary-total span {
+  color: #172033;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.summary-total strong {
+  color: #2563eb;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/* INFORMACION */
+
+.order-notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.order-notice i {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.order-notice p {
+  margin: 0;
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* CARRITO VACIO */
+
+.order-empty {
+  padding: 70px 25px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5eaf1;
+  border-radius: 18px;
+}
+
+.order-empty > i {
+  font-size: 55px;
+  color: #94a3b8;
+}
+
+.order-empty h2 {
+  color: #172033;
+  font-size: 23px;
+  font-weight: 800;
+  margin-top: 20px;
+}
+
+.order-empty p {
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+.btn-return-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.btn-return-catalog:hover {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+/* CONFIRMACION VISUAL */
+
+.order-success {
+  margin-top: 25px;
+  padding: 25px;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+  background: #f0fdf4;
+  text-align: center;
+}
+
+.order-success i {
+  font-size: 40px;
+  color: #16a34a;
+}
+
+.order-success h2 {
+  margin: 12px 0;
+  color: #166534;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.order-success p {
+  color: #166534;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* RESPONSIVE TABLET */
+
+@media (max-width: 992px) {
+
+  .order-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .order-summary {
+    position: static;
+  }
+
+}
+
+/* RESPONSIVE MOVIL */
+
+@media (max-width: 576px) {
+
+  .order-container {
+    padding: 25px 15px 45px;
+  }
+
+  .order-header h1 {
+    font-size: 30px;
+  }
+
+  .order-form-card,
+  .order-summary {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .form-heading h2 {
+    font-size: 18px;
+  }
+
+  .order-item {
+    gap: 9px;
+  }
+
+  .order-item-image {
+    width: 55px;
+    height: 55px;
+  }
+
+  .order-item-info h3 {
+    font-size: 12px;
+  }
+
+  .order-item > strong {
+    font-size: 12px;
+  }
+
+  .summary-total strong {
+    font-size: 21px;
+  }
+
+}

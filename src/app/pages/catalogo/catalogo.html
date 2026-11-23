@@ -95,6 +95,7 @@
               <button
                 class="btn-product"
                 [disabled]="product.stock <= 0"
+                [routerLink]="['/producto', product.id]"
               >
                 Ver producto
                 <i class="bi bi-arrow-right"></i>
