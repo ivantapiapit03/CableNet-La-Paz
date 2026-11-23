@@ -1,0 +1,161 @@
+<div class="product-detail-container">
+
+  @if (product(); as item) {
+
+    <div class="product-detail">
+
+      <!-- Imagen del producto -->
+      <div class="product-detail-image">
+
+        <img
+          [src]="item.image"
+          [alt]="item.name"
+        />
+
+      </div>
+
+      <!-- Información del producto -->
+      <div class="product-detail-info">
+
+        <a routerLink="/catalogo" class="back-link">
+          <i class="bi bi-arrow-left"></i>
+          Volver al catálogo
+        </a>
+
+        <span class="product-brand">
+          {{ item.brand }}
+        </span>
+
+        <span class="product-category">
+          {{ item.category }}
+        </span>
+
+        <h1>{{ item.name }}</h1>
+
+        <p class="product-description">
+          {{ item.description }}
+        </p>
+
+        <!-- Stock -->
+        <div class="product-stock">
+
+          @if (item.stock > 0) {
+            <span class="stock-available">
+              <i class="bi bi-check-circle-fill"></i>
+              Disponible en stock: {{ item.stock }}
+            </span>
+          } @else {
+            <span class="stock-out">
+              <i class="bi bi-x-circle-fill"></i>
+              Producto agotado
+            </span>
+          }
+
+        </div>
+
+        <!-- Precio -->
+        <div class="product-price">
+
+          <span>Precio unitario</span>
+
+          <strong>
+            {{ item.price | currency:'BOB':'Bs. ':'1.2-2' }}
+          </strong>
+
+        </div>
+
+        <!-- Selector de cantidad -->
+        @if (item.stock > 0) {
+
+          <div class="quantity-selector">
+
+            <span>Cantidad</span>
+
+            <div class="quantity-controls">
+
+              <button
+                type="button"
+                (click)="decreaseQuantity()"
+                [disabled]="quantity() <= 1"
+              >
+                −
+              </button>
+
+              <span>{{ quantity() }}</span>
+
+              <button
+                type="button"
+                (click)="increaseQuantity()"
+                [disabled]="quantity() >= item.stock"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- Subtotal -->
+          <div class="product-subtotal">
+
+            <span>Subtotal</span>
+
+            <strong>
+              {{ item.price * quantity() | currency:'BOB':'Bs. ':'1.2-2' }}
+            </strong>
+
+          </div>
+
+          <!-- Botón de pedido -->
+          <!-- Mensaje de resultado -->
+        @if (message()) {
+        <div
+            class="cart-message"
+            [class.cart-message-success]="messageType() === 'success'"
+            [class.cart-message-error]="messageType() === 'error'"
+        >
+            <i
+            class="bi"
+            [class.bi-check-circle-fill]="messageType() === 'success'"
+            [class.bi-exclamation-circle-fill]="messageType() === 'error'"
+            ></i>
+
+            {{ message() }}
+        </div>
+        }
+
+        <!-- Botón de pedido -->
+        <button
+        type="button"
+        class="btn-add-order"
+        (click)="addToCart()"
+        >
+        <i class="bi bi-cart-plus"></i>
+        Agregar al pedido
+        </button>
+
+        }
+
+      </div>
+
+    </div>
+
+  } @else {
+
+    <div class="product-not-found">
+
+      <i class="bi bi-exclamation-circle"></i>
+
+      <h2>Producto no encontrado</h2>
+
+      <p>El producto solicitado no existe o no está disponible.</p>
+
+      <a routerLink="/catalogo" class="btn-back-catalog">
+        Volver al catálogo
+      </a>
+
+    </div>
+
+  }
+
+</div>

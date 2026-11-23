@@ -1,0 +1,133 @@
+/* =========================================
+   CABLENET LA PAZ - NAVBAR
+========================================= */
+
+.cablenet-navbar {
+  background: linear-gradient(90deg, #0b1f3a, #123e70);
+  padding: 14px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* LOGO */
+
+.cablenet-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff !important;
+}
+
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: #0d6efd;
+  border-radius: 12px;
+  font-size: 22px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand-text small {
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 5px;
+  color: #b8d8ff;
+}
+
+/* MENU */
+
+.cablenet-navbar .nav-link {
+  color: #dce8f5;
+  font-weight: 500;
+  padding: 10px 16px;
+  transition: all 0.3s ease;
+}
+
+.cablenet-navbar .nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.cablenet-navbar .nav-link.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ACCIONES */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-search,
+.btn-cart {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-search:hover,
+.btn-cart:hover {
+  background: #0d6efd;
+  color: white;
+}
+
+.btn-search {
+  width: 42px;
+  height: 42px;
+}
+
+.btn-cart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+}
+
+.cart-count {
+  background: #0d6efd;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* MENU MOVIL */
+
+.cablenet-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cablenet-navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+  .cablenet-navbar .navbar-collapse {
+    padding-top: 15px;
+  }
+
+  .cablenet-navbar .navbar-nav {
+    margin-bottom: 15px;
+  }
+
+  .navbar-actions {
+    padding-bottom: 10px;
+  }
+}

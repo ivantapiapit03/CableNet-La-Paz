@@ -1,0 +1,485 @@
+﻿<!-- HERO PRINCIPAL -->
+<section class="hero-section">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <span class="hero-badge">
+        <i class="bi bi-diagram-3-fill"></i>
+        SOLUCIONES PROFESIONALES DE REDES
+      </span>
+
+      <h1>
+        Conectamos tu mundo
+        <span>con tecnologÃ­a de calidad.</span>
+      </h1>
+
+      <p class="hero-description">
+        Equipamiento profesional para cableado estructurado,
+        conectividad, instalaciÃ³n, diagnÃ³stico y certificaciÃ³n
+        de redes.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#catalogo" class="btn btn-primary btn-lg">
+          <i class="bi bi-shop me-2"></i>
+          Explorar catÃ¡logo
+        </a>
+
+        <a href="#marcas" class="btn btn-outline-light btn-lg">
+          Conocer nuestras marcas
+          <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      </div>
+
+      <div class="hero-features">
+        <div class="feature-item">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Calidad profesional</span>
+        </div>
+
+        <div class="feature-item">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Equipamiento especializado</span>
+        </div>
+
+        <div class="feature-item">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Soluciones para redes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="network-card">
+        <i class="bi bi-router network-icon"></i>
+
+        <h3>Infraestructura de red</h3>
+
+        <p>
+          Soluciones para instalaciones modernas,
+          confiables y de alto rendimiento.
+        </p>
+
+        <div class="network-diagram">
+          <div class="network-node">
+            <i class="bi bi-globe2"></i>
+          </div>
+
+          <div class="network-line"></div>
+
+          <div class="network-node">
+            <i class="bi bi-router-fill"></i>
+          </div>
+
+          <div class="network-line"></div>
+
+          <div class="network-node">
+            <i class="bi bi-pc-display"></i>
+          </div>
+        </div>
+
+        <span class="network-status">
+          <span class="status-dot"></span>
+          Conectividad profesional
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIAS -->
+<section class="categories-section" id="catalogo">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="section-label">NUESTROS PRODUCTOS</span>
+
+      <h2>Soluciones para cada proyecto</h2>
+
+      <p>
+        Encuentra los materiales y herramientas que necesitas
+        para tu infraestructura de red.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="category-card">
+          <div class="category-icon icon-blue">
+            <i class="bi bi-ethernet"></i>
+          </div>
+
+          <h3>Cableado estructurado</h3>
+
+          <p>
+            Cables UTP, FTP y soluciones Cat 6, Cat 6A y Cat 7.
+          </p>
+
+          <a href="#catalogo">
+            Ver productos
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="category-card">
+          <div class="category-icon icon-green">
+            <i class="bi bi-diagram-2"></i>
+          </div>
+
+          <h3>Conectividad</h3>
+
+          <p>
+            Patch panels, conectores RJ45, patch cords y accesorios.
+          </p>
+
+          <a href="#catalogo">
+            Ver productos
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="category-card">
+          <div class="category-icon icon-orange">
+            <i class="bi bi-tools"></i>
+          </div>
+
+          <h3>Herramientas</h3>
+
+          <p>
+            Equipos para instalaciÃ³n, mantenimiento y diagnÃ³stico.
+          </p>
+
+          <a href="#marcas">
+            Ver herramientas
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="category-card">
+          <div class="category-icon icon-purple">
+            <i class="bi bi-clipboard-check"></i>
+          </div>
+
+          <h3>CertificaciÃ³n</h3>
+
+          <p>
+            Equipos profesionales para pruebas y certificaciÃ³n de redes.
+          </p>
+
+          <a href="#marcas">
+            Ver equipos
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section class="brands-section" id="marcas">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="section-label">TECNOLOGÃA Y CONFIANZA</span>
+
+      <h2>Marcas especializadas</h2>
+
+      <p>
+        Equipamiento para proyectos de redes e infraestructura profesional.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-12 col-lg-6">
+        <div class="brand-card furukawa-card">
+
+          <div class="brand-logo">
+            <i class="bi bi-cable"></i>
+            <span>FURUKAWA</span>
+          </div>
+
+          <h3>Conectividad e infraestructura</h3>
+
+          <p>
+            Soluciones de cableado estructurado, conectividad,
+            componentes y materiales para redes empresariales.
+          </p>
+
+          <div class="brand-tags">
+            <span>Cat 6</span>
+            <span>Cat 6A</span>
+            <span>Cat 7</span>
+            <span>Conectividad</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="brand-card fluke-card">
+
+          <div class="brand-logo">
+            <i class="bi bi-speedometer2"></i>
+            <span>FLUKE NETWORKS</span>
+          </div>
+
+          <h3>MediciÃ³n y certificaciÃ³n</h3>
+
+          <p>
+            Instrumentos profesionales para verificar,
+            diagnosticar, medir y certificar instalaciones de redes.
+          </p>
+
+          <div class="brand-tags">
+            <span>Tester</span>
+            <span>DiagnÃ³stico</span>
+            <span>CertificaciÃ³n</span>
+            <span>InstalaciÃ³n</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="benefits-section">
+  <div class="container">
+
+    <div class="row g-4">
+
+      <div class="col-12 col-md-4">
+        <div class="benefit-item">
+          <i class="bi bi-shield-check"></i>
+          <h3>Calidad</h3>
+          <p>Productos orientados a instalaciones confiables.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="benefit-item">
+          <i class="bi bi-gear-wide-connected"></i>
+          <h3>Profesionalismo</h3>
+          <p>Equipamiento para tÃ©cnicos e instaladores de redes.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="benefit-item">
+          <i class="bi bi-lightning-charge"></i>
+          <h3>Rendimiento</h3>
+          <p>Componentes para infraestructura de conectividad.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- PRODUCTOS DESTACADOS -->
+<section class="featured-products-section" id="destacados">
+  <div class="container">
+
+    <!-- ENCABEZADO -->
+    <div class="featured-heading">
+
+      <span class="section-label">
+        SELECCIÃ“N PROFESIONAL
+      </span>
+
+      <h2>Productos destacados</h2>
+
+      <p>
+        Equipamiento y materiales seleccionados para construir,
+        mantener y certificar infraestructuras de red.
+      </p>
+
+    </div>
+
+    <!-- GRID DE PRODUCTOS -->
+    <div class="row g-4">
+
+      <!-- PRODUCTO 1 -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <article class="featured-product-card">
+
+          <div class="product-image-area cable-product">
+            <span class="product-badge">DESTACADO</span>
+            <i class="bi bi-ethernet"></i>
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-brand">FURUKAWA</span>
+
+            <h3>Cable UTP Cat 6</h3>
+
+            <p>
+              Cable de cobre para instalaciones de cableado
+              estructurado y redes Ethernet.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                <small>Precio referencial</small>
+                <strong>Bs 850</strong>
+              </div>
+
+              <button class="product-action" type="button"
+                aria-label="Ver cable UTP Cat 6">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      </div>
+
+      <!-- PRODUCTO 2 -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <article class="featured-product-card">
+
+          <div class="product-image-area panel-product">
+            <span class="product-badge">CONECTIVIDAD</span>
+            <i class="bi bi-hdd-network"></i>
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-brand">FURUKAWA</span>
+
+            <h3>Patch Panel Cat 6</h3>
+
+            <p>
+              Panel de conexiÃ³n de 24 puertos para organizar
+              las terminaciones de red en rack.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                <small>Precio referencial</small>
+                <strong>Bs 480</strong>
+              </div>
+
+              <button class="product-action" type="button"
+                aria-label="Ver Patch Panel">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      </div>
+
+      <!-- PRODUCTO 3 -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <article class="featured-product-card">
+
+          <div class="product-image-area patch-product">
+            <span class="product-badge">ACCESORIO</span>
+            <i class="bi bi-bezier2"></i>
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-brand">FURUKAWA</span>
+
+            <h3>Patch Cord Cat 6</h3>
+
+            <p>
+              Cable de conexiÃ³n Ethernet para conectar equipos,
+              switches y puntos de red.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                <small>Precio referencial</small>
+                <strong>Bs 45</strong>
+              </div>
+
+              <button class="product-action" type="button"
+                aria-label="Ver Patch Cord">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      </div>
+
+      <!-- PRODUCTO 4 -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <article class="featured-product-card">
+
+          <div class="product-image-area tester-product">
+            <span class="product-badge">DIAGNÃ“STICO</span>
+            <i class="bi bi-tools"></i>
+          </div>
+
+          <div class="product-info">
+
+            <span class="product-brand fluke-brand">
+              FLUKE NETWORKS
+            </span>
+
+            <h3>Tester de cable de red</h3>
+
+            <p>
+              Herramienta para pruebas y diagnÃ³stico
+              de conexiones de cableado.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                <small>Precio referencial</small>
+                <strong>Bs 1.250</strong>
+              </div>
+
+              <button class="product-action" type="button"
+                aria-label="Ver tester de red">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      </div>
+
+    </div>
+
+    <!-- BOTON CATALOGO -->
+    <div class="featured-footer">
+
+      <a href="#catalogo" class="btn-featured-catalog">
+        Explorar todos los productos
+        <i class="bi bi-arrow-right"></i>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+```

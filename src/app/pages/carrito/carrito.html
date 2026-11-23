@@ -1,0 +1,182 @@
+<div class="cart-container">
+
+  <!-- ENCABEZADO -->
+  <div class="cart-header">
+    <div>
+      <h1>Mi carrito de compras</h1>
+      <p>Revisa los productos antes de continuar con tu pedido.</p>
+    </div>
+
+    <a routerLink="/catalogo" class="btn-back">
+      <i class="bi bi-arrow-left"></i>
+      Seguir comprando
+    </a>
+  </div>
+
+  <!-- CARRITO CON PRODUCTOS -->
+  @if (items().length > 0) {
+
+    <div class="cart-layout">
+
+      <!-- LISTA DE PRODUCTOS -->
+      <div class="cart-products">
+
+        @for (item of items(); track item.product.id) {
+
+          <div class="cart-product">
+
+            <!-- IMAGEN DEL PRODUCTO -->
+            <div class="cart-product-image">
+              <img
+                [src]="item.product.image"
+                [alt]="item.product.name"
+              >
+            </div>
+
+            <!-- INFORMACIÓN DEL PRODUCTO -->
+            <div class="cart-product-info">
+              <span class="product-brand">
+                {{ item.product.brand }}
+              </span>
+
+              <h3>{{ item.product.name }}</h3>
+
+              <p class="product-price">
+                Bs. {{ item.product.price | number:'1.2-2' }}
+              </p>
+
+              <!-- CONTROL DE CANTIDAD -->
+              <div class="quantity-control">
+
+                <button
+                  type="button"
+                  (click)="decreaseQuantity(item.product.id)"
+                  [disabled]="item.quantity <= 1"
+                  aria-label="Disminuir cantidad"
+                >
+                  <i class="bi bi-dash"></i>
+                </button>
+
+                <span>{{ item.quantity }}</span>
+
+                <button
+                  type="button"
+                  (click)="increaseQuantity(item.product.id)"
+                  [disabled]="item.quantity >= item.product.stock"
+                  aria-label="Aumentar cantidad"
+                >
+                  <i class="bi bi-plus"></i>
+                </button>
+
+              </div>
+            </div>
+
+            <!-- SUBTOTAL Y ELIMINAR PRODUCTO -->
+            <div class="cart-product-actions">
+
+              <strong class="product-subtotal">
+                Bs. {{ item.subtotal | number:'1.2-2' }}
+              </strong>
+
+              <button
+                type="button"
+                class="btn-remove"
+                (click)="removeProduct(item.product.id)"
+                title="Eliminar producto"
+              >
+                <i class="bi bi-trash3"></i>
+                Eliminar
+              </button>
+
+            </div>
+
+          </div>
+
+        }
+
+        <!-- VACIAR CARRITO -->
+        <button
+          type="button"
+          class="btn-clear-cart"
+          (click)="clearCart()"
+        >
+          <i class="bi bi-trash"></i>
+          Vaciar carrito
+        </button>
+
+      </div>
+
+      <!-- RESUMEN DEL PEDIDO -->
+      <aside class="cart-summary">
+
+        <h2>Resumen del pedido</h2>
+
+        <div class="summary-row">
+          <span>Productos</span>
+          <strong>{{ itemCount() }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong>
+            Bs. {{ total() | number:'1.2-2' }}
+          </strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Envío</span>
+          <strong>Por coordinar</strong>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="summary-total">
+          <span>Total estimado</span>
+          <strong>
+            Bs. {{ total() | number:'1.2-2' }}
+          </strong>
+        </div>
+
+        <!-- CONTINUAR PEDIDO -->
+        <button
+          type="button"
+          class="btn-checkout"
+        >
+          <i class="bi bi-clipboard-check"></i>
+          Continuar pedido
+        </button>
+
+        <div class="summary-security">
+          <i class="bi bi-shield-check"></i>
+          Revisa tu pedido antes de confirmarlo.
+        </div>
+
+      </aside>
+
+    </div>
+
+  } @else {
+
+    <!-- CARRITO VACÍO -->
+    <div class="cart-empty">
+
+      <div class="empty-icon">
+        <i class="bi bi-cart3"></i>
+      </div>
+
+      <h2>Tu carrito está vacío</h2>
+
+      <p>
+        Todavía no agregaste productos.
+        Explora nuestro catálogo y encuentra lo que necesitas.
+      </p>
+
+      <a routerLink="/catalogo" class="btn-empty-catalog">
+        <i class="bi bi-box-seam"></i>
+        Explorar catálogo
+      </a>
+
+    </div>
+
+  }
+
+</div>
