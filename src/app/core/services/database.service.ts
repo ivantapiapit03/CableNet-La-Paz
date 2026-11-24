@@ -6,6 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class DatabaseService {
 
+  // ==========================================
+  // CONFIGURACIÓN DE INDEXEDDB
+  // ==========================================
+
   private readonly DB_NAME = 'cablenet_db';
   private readonly DB_VERSION = 1;
 
@@ -34,26 +38,26 @@ export class DatabaseService {
         this.DB_VERSION
       );
 
-      // Crear estructura de la base de datos
+      // Crear estructura de la base de datos.
       request.onupgradeneeded = (event) => {
 
         const db = request.result;
 
-        // Productos
+        // Almacén de productos.
         if (!db.objectStoreNames.contains('products')) {
           db.createObjectStore('products', {
             keyPath: 'id'
           });
         }
 
-        // Pedidos
+        // Almacén de pedidos.
         if (!db.objectStoreNames.contains('orders')) {
           db.createObjectStore('orders', {
             keyPath: 'id'
           });
         }
 
-        // Carrito
+        // Almacén del carrito.
         if (!db.objectStoreNames.contains('cart')) {
           db.createObjectStore('cart');
         }
@@ -67,7 +71,7 @@ export class DatabaseService {
 
         const db = request.result;
 
-        // Cerrar conexión si la base de datos cambia de versión
+        // Cerrar conexión si cambia la versión.
         db.onversionchange = () => {
           db.close();
           this.dbPromise = null;
@@ -229,21 +233,6 @@ export class DatabaseService {
 
       const store = transaction.objectStore(storeName);
 
-      try {
-
-        if (key !== undefined) {
-          store.put(data, key);
-        } else {
-          store.put(data);
-        }
-
-      } catch (error) {
-
-        reject(error);
-        return;
-      }
-
-      // Confirmar después de completar la transacción
       transaction.oncomplete = () => {
         resolve();
       };
@@ -261,6 +250,73 @@ export class DatabaseService {
           new Error(`Guardado abortado en ${storeName}`)
         );
       };
+
+      try {
+
+        if (key !== undefined) {
+          store.put(data, key);
+        } else {
+          store.put(data);
+        }
+
+      } catch (error) {
+
+        reject(error);
+      }
+
+    });
+  }
+
+  // ==========================================
+  // INSERTAR REGISTRO SIN SOBRESCRIBIR
+  // ==========================================
+
+  async add<T>(
+    storeName: string,
+    data: T
+  ): Promise<void> {
+
+    this.validateStore(storeName);
+
+    const db = await this.openDatabase();
+
+    return new Promise((resolve, reject) => {
+
+      const transaction = db.transaction(
+        storeName,
+        'readwrite'
+      );
+
+      const store = transaction.objectStore(storeName);
+
+      transaction.oncomplete = () => {
+        resolve();
+      };
+
+      transaction.onerror = () => {
+        reject(
+          transaction.error ??
+          new Error(`Error insertando datos en ${storeName}`)
+        );
+      };
+
+      transaction.onabort = () => {
+        reject(
+          transaction.error ??
+          new Error(`Inserción abortada en ${storeName}`)
+        );
+      };
+
+      try {
+
+        // add() rechaza claves duplicadas.
+        store.add(data);
+
+      } catch (error) {
+
+        reject(error);
+      }
+
     });
   }
 
@@ -371,4 +427,5 @@ export class DatabaseService {
       return false;
     }
   }
+
 }

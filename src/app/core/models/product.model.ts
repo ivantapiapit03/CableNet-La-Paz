@@ -8,4 +8,9 @@ export interface Product {
   stock: number;
   image: string;
   active: boolean;
+
+  // Información comercial
+  unit?: string;
+  presentation?: string;
+  metersPerUnit?: number;
 }

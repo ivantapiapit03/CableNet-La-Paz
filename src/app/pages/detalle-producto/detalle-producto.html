@@ -1,59 +1,119 @@
+
 <div class="product-detail-container">
 
   @if (product(); as item) {
 
     <div class="product-detail">
 
-      <!-- Imagen del producto -->
+      <!-- IMAGEN DEL PRODUCTO -->
       <div class="product-detail-image">
-
         <img
           [src]="item.image"
           [alt]="item.name"
         />
-
       </div>
 
-      <!-- Información del producto -->
+      <!-- INFORMACIÓN DEL PRODUCTO -->
       <div class="product-detail-info">
 
+        <!-- VOLVER AL CATÁLOGO -->
         <a routerLink="/catalogo" class="back-link">
           <i class="bi bi-arrow-left"></i>
           Volver al catálogo
         </a>
 
+        <!-- MARCA -->
         <span class="product-brand">
           {{ item.brand }}
         </span>
 
+        <!-- CATEGORÍA -->
         <span class="product-category">
           {{ item.category }}
         </span>
 
-        <h1>{{ item.name }}</h1>
+        <!-- NOMBRE -->
+        <h1>
+          {{ item.name }}
+        </h1>
 
+        <!-- DESCRIPCIÓN -->
         <p class="product-description">
           {{ item.description }}
         </p>
 
-        <!-- Stock -->
+        <!-- PRESENTACIÓN COMERCIAL -->
+        @if (item.metersPerUnit) {
+
+          <div class="product-presentation">
+
+            <div class="presentation-header">
+              <span class="presentation-icon">
+                <i class="bi bi-box-seam"></i>
+              </span>
+
+              <div>
+                <strong>Presentación comercial</strong>
+                <small>{{ item.presentation }}</small>
+              </div>
+            </div>
+
+            <div class="presentation-info">
+
+              <div class="presentation-item">
+                <span>Unidad de venta</span>
+                <strong>{{ item.unit }}</strong>
+              </div>
+
+              <div class="presentation-item">
+                <span>Metros por caja</span>
+                <strong>{{ item.metersPerUnit }} m</strong>
+              </div>
+
+              <div class="presentation-item">
+                <span>Stock disponible</span>
+                <strong>{{ item.stock }} cajas</strong>
+              </div>
+
+            </div>
+
+            <div class="meters-calculation">
+              <i class="bi bi-rulers"></i>
+
+              <span>
+                Con la cantidad seleccionada:
+                <strong>
+                  {{ quantity() * item.metersPerUnit }} metros
+                </strong>
+              </span>
+            </div>
+
+          </div>
+
+        }
+
+        <!-- DISPONIBILIDAD -->
         <div class="product-stock">
 
           @if (item.stock > 0) {
+
             <span class="stock-available">
               <i class="bi bi-check-circle-fill"></i>
               Disponible en stock: {{ item.stock }}
             </span>
+
           } @else {
-            <span class="stock-out">
+
+            <span class="stock-unavailable">
               <i class="bi bi-x-circle-fill"></i>
-              Producto agotado
+              Producto sin stock
             </span>
+
           }
 
         </div>
 
-        <!-- Precio -->
+        <!-- PRECIO -->
         <div class="product-price">
 
           <span>Precio unitario</span>
@@ -64,38 +124,46 @@
 
         </div>
 
-        <!-- Selector de cantidad -->
+        <!-- SELECCIÓN DE CANTIDAD -->
         @if (item.stock > 0) {
 
-          <div class="quantity-selector">
+          <div class="quantity-section">
 
-            <span>Cantidad</span>
+            <label>
+              Cantidad
+            </label>
 
-            <div class="quantity-controls">
+            <div class="quantity-control">
 
               <button
                 type="button"
+                class="quantity-btn"
                 (click)="decreaseQuantity()"
                 [disabled]="quantity() <= 1"
+                aria-label="Disminuir cantidad"
               >
-                −
+                <i class="bi bi-dash"></i>
               </button>
 
-              <span>{{ quantity() }}</span>
+              <span class="quantity-value">
+                {{ quantity() }}
+              </span>
 
               <button
                 type="button"
+                class="quantity-btn"
                 (click)="increaseQuantity()"
                 [disabled]="quantity() >= item.stock"
+                aria-label="Aumentar cantidad"
               >
-                +
+                <i class="bi bi-plus"></i>
               </button>
 
             </div>
 
           </div>
 
-          <!-- Subtotal -->
+          <!-- SUBTOTAL -->
           <div class="product-subtotal">
 
             <span>Subtotal</span>
@@ -106,33 +174,34 @@
 
           </div>
 
-          <!-- Botón de pedido -->
-          <!-- Mensaje de resultado -->
-        @if (message()) {
-        <div
-            class="cart-message"
-            [class.cart-message-success]="messageType() === 'success'"
-            [class.cart-message-error]="messageType() === 'error'"
-        >
-            <i
-            class="bi"
-            [class.bi-check-circle-fill]="messageType() === 'success'"
-            [class.bi-exclamation-circle-fill]="messageType() === 'error'"
-            ></i>
+          <!-- MENSAJE DEL CARRITO -->
+          @if (message()) {
 
-            {{ message() }}
-        </div>
-        }
+            <div
+              class="cart-message"
+              [class.success]="messageType() === 'success'"
+              [class.error]="messageType() === 'error'"
+            >
+              <i
+                class="bi"
+                [class.bi-check-circle-fill]="messageType() === 'success'"
+                [class.bi-exclamation-circle-fill]="messageType() === 'error'"
+              ></i>
 
-        <!-- Botón de pedido -->
-        <button
-        type="button"
-        class="btn-add-order"
-        (click)="addToCart()"
-        >
-        <i class="bi bi-cart-plus"></i>
-        Agregar al pedido
-        </button>
+              {{ message() }}
+            </div>
+
+          }
+
+          <!-- AGREGAR AL PEDIDO -->
+          <button
+            type="button"
+            class="add-to-cart-btn"
+            (click)="addToCart()"
+          >
+            <i class="bi bi-cart-plus"></i>
+            Agregar al pedido
+          </button>
 
         }
 
@@ -142,15 +211,19 @@
 
   } @else {
 
+    <!-- PRODUCTO NO ENCONTRADO -->
     <div class="product-not-found">
 
-      <i class="bi bi-exclamation-circle"></i>
+      <i class="bi bi-box-seam"></i>
 
       <h2>Producto no encontrado</h2>
 
-      <p>El producto solicitado no existe o no está disponible.</p>
+      <p>
+        El producto que buscas no está disponible o no existe.
+      </p>
 
-      <a routerLink="/catalogo" class="btn-back-catalog">
+      <a routerLink="/catalogo" class="back-to-catalog-btn">
+        <i class="bi bi-arrow-left"></i>
         Volver al catálogo
       </a>
 

@@ -1,0 +1,823 @@
+
+<div class="tools-page">
+
+  <!-- ENCABEZADO -->
+  <section class="tools-header">
+    <div class="tools-header-content">
+
+      <div class="tools-icon-main">
+        <i class="bi bi-tools"></i>
+      </div>
+
+      <div>
+        <span class="tools-eyebrow">CABLENET · LA PAZ</span>
+        <h1>Centro de herramientas</h1>
+        <p>
+          Utilidades técnicas para instalaciones, cableado estructurado
+          y configuración de redes.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="tools-content">
+
+    <!-- MENSAJES -->
+    @if (message()) {
+      <div class="tools-alert" [ngClass]="'alert-' + messageType()">
+        <i class="bi"
+           [ngClass]="messageType() === 'success'
+             ? 'bi-check-circle-fill'
+             : messageType() === 'error'
+               ? 'bi-exclamation-circle-fill'
+               : 'bi-info-circle-fill'">
+        </i>
+        {{ message() }}
+      </div>
+    }
+
+    <!-- ======================================
+         MENÚ PRINCIPAL
+         ====================================== -->
+
+    @if (selectedTool() === null) {
+
+      <div class="tools-section-title">
+        <div>
+          <h2>Herramientas disponibles</h2>
+          <p>
+            Selecciona una herramienta para realizar cálculos,
+            análisis y verificaciones técnicas.
+          </p>
+        </div>
+      </div>
+
+      <div class="tools-grid">
+
+        @for (tool of tools; track tool.id) {
+
+          <article class="tool-card">
+
+            <div class="tool-card-icon"
+                 [ngClass]="{
+                   'cable-icon': tool.id === 'cableado',
+                   'network-icon': tool.id === 'redes',
+                   'converter-icon': tool.id === 'conversion',
+                   'diagnostic-icon': tool.id === 'diagnostico'
+                 }">
+              <i class="bi" [ngClass]="tool.icon"></i>
+            </div>
+
+            <span class="tool-badge">
+              @switch (tool.id) {
+                @case ('cableado') { CABLEADO }
+                @case ('redes') { REDES IP }
+                @case ('conversion') { CONVERSIÓN }
+                @case ('diagnostico') { DIAGNÓSTICO }
+              }
+            </span>
+
+            <h3>{{ tool.title }}</h3>
+
+            <p>
+              @switch (tool.id) {
+                @case ('cableado') {
+                  Calcula longitudes, reservas, cajas necesarias
+                  y presupuesto de cableado estructurado.
+                }
+                @case ('redes') {
+                  Analiza direcciones IPv4, máscaras, subredes,
+                  broadcast y hosts disponibles.
+                }
+                @case ('conversion') {
+                  Convierte unidades de longitud utilizadas
+                  en instalaciones de cableado.
+                }
+                @case ('diagnostico') {
+                  Valida parámetros IP y prepara comandos
+                  para verificar la conectividad de red.
+                }
+              }
+            </p>
+
+            <div class="tool-card-footer">
+              <span class="tool-status">
+                <i class="bi bi-check-circle-fill"></i>
+                Herramienta disponible
+              </span>
+
+              <button
+                type="button"
+                class="tool-button"
+                (click)="openTool(tool.id)">
+                Abrir herramienta
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+      <div class="tools-info">
+        <div class="tools-info-icon">
+          <i class="bi bi-info-circle-fill"></i>
+        </div>
+
+        <div>
+          <h4>Centro técnico CableNet</h4>
+          <p>
+            Herramientas para apoyar la planificación de instalaciones,
+            cálculos de infraestructura y diagnóstico de redes.
+          </p>
+        </div>
+      </div>
+
+    }
+
+    <!-- ======================================
+         HERRAMIENTA 1: CABLEADO
+         ====================================== -->
+
+    @if (selectedTool() === 'cableado') {
+
+      <section class="calculator-panel">
+
+        <button type="button" class="back-link"
+                (click)="backToTools()">
+          <i class="bi bi-arrow-left"></i>
+          Volver a herramientas
+        </button>
+
+        <div class="calculator-heading">
+          <div class="tool-card-icon cable-icon">
+            <i class="bi bi-rulers"></i>
+          </div>
+
+          <div>
+            <span class="tool-badge">CABLEADO ESTRUCTURADO</span>
+            <h2>Comprobación y cálculo de cableado de red</h2>
+            <p>
+              Planificación de materiales y estimación de costos.
+            </p>
+          </div>
+        </div>
+
+        <div class="calculator-grid">
+
+          <div class="calculator-form">
+
+            <h3>Parámetros de instalación</h3>
+
+            <div class="field-group">
+              <label for="cableCategory">Categoría de cable</label>
+
+              <select id="cableCategory"
+                      class="form-control"
+                      [(ngModel)]="cableCategory">
+                <option value="Cat 5e">Categoría 5e</option>
+                <option value="Cat 6">Categoría 6</option>
+                <option value="Cat 6A">Categoría 6A</option>
+              </select>
+
+              <small>
+                El precio se consulta del producto Furukawa Cat 6
+                registrado en el inventario.
+              </small>
+            </div>
+
+            <div class="field-group">
+              <label for="cablePoints">Cantidad de puntos de red</label>
+
+              <input id="cablePoints"
+                     class="form-control"
+                     type="number"
+                     min="1"
+                     step="1"
+                     [(ngModel)]="cablePoints">
+            </div>
+
+            <div class="field-group">
+              <label for="cableDistance">
+                Distancia promedio por punto (metros)
+              </label>
+
+              <input id="cableDistance"
+                     class="form-control"
+                     type="number"
+                     min="0.01"
+                     step="0.01"
+                     [(ngModel)]="cableDistance">
+            </div>
+
+            <div class="field-group">
+              <label for="cableReserve">Reserva adicional (%)</label>
+
+              <input id="cableReserve"
+                     class="form-control"
+                     type="number"
+                     min="0"
+                     max="100"
+                     step="1"
+                     [(ngModel)]="cableReserve">
+            </div>
+
+            <div class="calculator-actions">
+              <button type="button"
+                      class="tool-button"
+                      (click)="calculateCable()">
+                <i class="bi bi-calculator"></i>
+                Calcular cableado
+              </button>
+
+              <button type="button"
+                      class="secondary-button"
+                      (click)="clearCable()">
+                <i class="bi bi-arrow-counterclockwise"></i>
+                Limpiar
+              </button>
+            </div>
+
+          </div>
+
+          <div class="calculator-side">
+
+            <h3>Información del producto</h3>
+
+            @if (cableProduct(); as product) {
+
+              <div class="inventory-product">
+
+                <div>
+                  <span>Producto</span>
+                  <strong>{{ product.name }}</strong>
+                </div>
+
+                <div>
+                  <span>Presentación</span>
+                  <strong>{{ product.presentation || 'No definida' }}</strong>
+                </div>
+
+                <div>
+                  <span>Precio por caja</span>
+                  <strong>Bs {{ product.price | number:'1.2-2' }}</strong>
+                </div>
+
+                <div>
+                  <span>Stock disponible</span>
+                  <strong>{{ product.stock }} cajas</strong>
+                </div>
+
+                <div>
+                  <span>Metros por caja</span>
+                  <strong>{{ product.metersPerUnit }} m</strong>
+                </div>
+
+              </div>
+
+            } @else {
+              <p>No se encontró el producto en el inventario.</p>
+            }
+
+            <div class="calculation-note">
+              <i class="bi bi-info-circle"></i>
+              <p>
+                El cálculo es una estimación de planificación.
+                No modifica el inventario ni descuenta existencias.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        @if (cableCalculation(); as result) {
+
+          <div class="calculation-results">
+
+            <h3>
+              <i class="bi bi-clipboard-data"></i>
+              Resultados del cálculo
+            </h3>
+
+            <div class="results-grid">
+
+              <div class="result-card">
+                <span>Metros base</span>
+                <strong>{{ result.baseMeters | number:'1.2-2' }} m</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Reserva adicional</span>
+                <strong>{{ result.reserveMeters | number:'1.2-2' }} m</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Total necesario</span>
+                <strong>{{ result.totalMeters | number:'1.2-2' }} m</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Cajas necesarias</span>
+                <strong>{{ result.boxes }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Metros cubiertos</span>
+                <strong>{{ result.coveredMeters | number:'1.2-2' }} m</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Metros sobrantes</span>
+                <strong>{{ result.remainingMeters | number:'1.2-2' }} m</strong>
+              </div>
+
+            </div>
+
+            <div class="budget-result">
+              <span>Presupuesto estimado</span>
+              <strong>Bs {{ result.estimatedCost | number:'1.2-2' }}</strong>
+            </div>
+
+            <div class="stock-result"
+                 [class.stock-ok]="result.enoughStock"
+                 [class.stock-warning]="!result.enoughStock">
+
+              <i class="bi"
+                 [ngClass]="result.enoughStock
+                   ? 'bi-check-circle-fill'
+                   : 'bi-exclamation-triangle-fill'">
+              </i>
+
+              @if (result.enoughStock) {
+                El inventario actual tiene existencias suficientes.
+              } @else {
+                Stock insuficiente. Se necesitan {{ result.boxes }}
+                cajas y hay {{ result.availableStock }} disponibles.
+              }
+
+            </div>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="copyCableResult()">
+              <i class="bi bi-clipboard"></i>
+              Copiar resultados
+            </button>
+
+          </div>
+
+        }
+
+      </section>
+
+    }
+
+    <!-- ======================================
+         HERRAMIENTA 2: REDES IP
+         ====================================== -->
+
+    @if (selectedTool() === 'redes') {
+
+      <section class="calculator-panel">
+
+        <button type="button" class="back-link"
+                (click)="backToTools()">
+          <i class="bi bi-arrow-left"></i>
+          Volver a herramientas
+        </button>
+
+        <div class="calculator-heading">
+          <div class="tool-card-icon network-icon">
+            <i class="bi bi-diagram-3"></i>
+          </div>
+
+          <div>
+            <span class="tool-badge">REDES IP</span>
+            <h2>Análisis y configuración de redes IP</h2>
+            <p>Calculadora de direccionamiento IPv4 y subnetting.</p>
+          </div>
+        </div>
+
+        <div class="calculator-form">
+
+          <div class="field-group">
+            <label for="ipAddress">Dirección IPv4</label>
+
+            <input id="ipAddress"
+                   class="form-control"
+                   type="text"
+                   placeholder="192.168.1.1"
+                   [(ngModel)]="ipAddress">
+          </div>
+
+          <div class="field-group">
+            <label for="ipPrefix">Prefijo CIDR</label>
+
+            <select id="ipPrefix"
+                    class="form-control"
+                    [(ngModel)]="ipPrefix">
+              @for (prefix of [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]; track prefix) {
+                <option [ngValue]="prefix">/{{ prefix }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="calculator-actions">
+
+            <button type="button"
+                    class="tool-button"
+                    (click)="calculateNetwork()">
+              <i class="bi bi-calculator"></i>
+              Analizar dirección IP
+            </button>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="clearNetwork()">
+              <i class="bi bi-arrow-counterclockwise"></i>
+              Limpiar
+            </button>
+
+          </div>
+
+        </div>
+
+        @if (ipCalculation(); as result) {
+
+          <div class="calculation-results">
+
+            <h3>
+              <i class="bi bi-diagram-3"></i>
+              Resultados del análisis IPv4
+            </h3>
+
+            <div class="results-grid">
+
+              <div class="result-card">
+                <span>Dirección IP</span>
+                <strong>{{ result.address }}/{{ ipPrefix }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Dirección de red</span>
+                <strong>{{ result.network }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Máscara de subred</span>
+                <strong>{{ result.mask }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Broadcast</span>
+                <strong>{{ result.broadcast }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Primer host</span>
+                <strong>{{ result.firstHost }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Último host</span>
+                <strong>{{ result.lastHost }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Total de direcciones</span>
+                <strong>{{ result.totalAddresses | number }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Hosts utilizables</span>
+                <strong>{{ result.usableHosts | number }}</strong>
+              </div>
+
+              <div class="result-card">
+                <span>Wildcard</span>
+                <strong>{{ result.wildcard }}</strong>
+              </div>
+
+            </div>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="copyNetworkResult()">
+              <i class="bi bi-clipboard"></i>
+              Copiar resultados
+            </button>
+
+          </div>
+
+        }
+
+      </section>
+
+    }
+
+    <!-- ======================================
+         HERRAMIENTA 3: CONVERSIÓN
+         ====================================== -->
+
+    @if (selectedTool() === 'conversion') {
+
+      <section class="calculator-panel">
+
+        <button type="button" class="back-link"
+                (click)="backToTools()">
+          <i class="bi bi-arrow-left"></i>
+          Volver a herramientas
+        </button>
+
+        <div class="calculator-heading">
+          <div class="tool-card-icon converter-icon">
+            <i class="bi bi-arrow-left-right"></i>
+          </div>
+
+          <div>
+            <span class="tool-badge">CONVERSIÓN</span>
+            <h2>Conversión de unidades de cableado</h2>
+            <p>Conversión de medidas utilizadas en instalaciones.</p>
+          </div>
+        </div>
+
+        <div class="calculator-form">
+
+          <div class="field-group">
+            <label for="conversionValue">Valor a convertir</label>
+
+            <input id="conversionValue"
+                   class="form-control"
+                   type="number"
+                   min="0"
+                   step="any"
+                   [(ngModel)]="conversionValue">
+          </div>
+
+          <div class="field-group">
+            <label for="conversionFrom">Unidad de origen</label>
+
+            <select id="conversionFrom"
+                    class="form-control"
+                    [(ngModel)]="conversionFrom">
+
+              @for (unit of conversionUnits; track unit.value) {
+                <option [value]="unit.value">
+                  {{ unit.label }}
+                </option>
+              }
+
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="conversionTo">Unidad de destino</label>
+
+            <select id="conversionTo"
+                    class="form-control"
+                    [(ngModel)]="conversionTo">
+
+              @for (unit of conversionUnits; track unit.value) {
+                <option [value]="unit.value">
+                  {{ unit.label }}
+                </option>
+              }
+
+            </select>
+          </div>
+
+          <div class="calculator-actions">
+
+            <button type="button"
+                    class="tool-button"
+                    (click)="convertUnits()">
+              <i class="bi bi-arrow-left-right"></i>
+              Convertir
+            </button>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="clearConversion()">
+              <i class="bi bi-arrow-counterclockwise"></i>
+              Limpiar
+            </button>
+
+          </div>
+
+        </div>
+
+        @if (conversionResult() !== null) {
+
+          <div class="conversion-output">
+
+            <span>Resultado de conversión</span>
+
+            <strong>
+              {{ conversionValue }}
+              {{ conversionFrom }}
+              =
+              {{ conversionResult() | number:'1.0-6' }}
+              {{ conversionTo }}
+            </strong>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="copyConversionResult()">
+              <i class="bi bi-clipboard"></i>
+              Copiar resultado
+            </button>
+
+          </div>
+
+        }
+
+      </section>
+
+    }
+
+    <!-- ======================================
+         HERRAMIENTA 4: DIAGNÓSTICO
+         ====================================== -->
+
+    @if (selectedTool() === 'diagnostico') {
+
+      <section class="calculator-panel">
+
+        <button type="button" class="back-link"
+                (click)="backToTools()">
+          <i class="bi bi-arrow-left"></i>
+          Volver a herramientas
+        </button>
+
+        <div class="calculator-heading">
+          <div class="tool-card-icon diagnostic-icon">
+            <i class="bi bi-ethernet"></i>
+          </div>
+
+          <div>
+            <span class="tool-badge">DIAGNÓSTICO</span>
+            <h2>Diagnóstico y conectividad de red</h2>
+            <p>Validación de parámetros de red IPv4.</p>
+          </div>
+        </div>
+
+        <div class="calculator-form">
+
+          <div class="field-group">
+            <label for="diagnosticIp">Dirección IP del equipo</label>
+
+            <input id="diagnosticIp"
+                   class="form-control"
+                   type="text"
+                   placeholder="192.168.1.100"
+                   [(ngModel)]="diagnosticIp">
+          </div>
+
+          <div class="field-group">
+            <label for="diagnosticGateway">Puerta de enlace (Gateway)</label>
+
+            <input id="diagnosticGateway"
+                   class="form-control"
+                   type="text"
+                   placeholder="192.168.1.1"
+                   [(ngModel)]="diagnosticGateway">
+          </div>
+
+          <div class="field-group">
+            <label for="diagnosticDns">Servidor DNS</label>
+
+            <input id="diagnosticDns"
+                   class="form-control"
+                   type="text"
+                   placeholder="8.8.8.8"
+                   [(ngModel)]="diagnosticDns">
+          </div>
+
+          <div class="calculator-actions">
+
+            <button type="button"
+                    class="tool-button"
+                    (click)="diagnoseNetwork()">
+              <i class="bi bi-activity"></i>
+              Validar parámetros
+            </button>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="clearDiagnostic()">
+              <i class="bi bi-arrow-counterclockwise"></i>
+              Limpiar
+            </button>
+
+          </div>
+
+        </div>
+
+        @if (diagnosticResult(); as result) {
+
+          <div class="calculation-results">
+
+            <h3>
+              <i class="bi bi-clipboard-check"></i>
+              Resultado de validación
+            </h3>
+
+            <div class="diagnostic-list">
+
+              <div>
+                <span>Dirección IP</span>
+                <strong>
+                  <i class="bi bi-check-circle-fill"></i>
+                  IPv4 válida
+                </strong>
+              </div>
+
+              <div>
+                <span>Gateway</span>
+                <strong>
+                  <i class="bi bi-check-circle-fill"></i>
+                  IPv4 válida
+                </strong>
+              </div>
+
+              <div>
+                <span>DNS</span>
+                <strong>
+                  <i class="bi bi-check-circle-fill"></i>
+                  IPv4 válida
+                </strong>
+              </div>
+
+              <div>
+                <span>Gateway en la misma subred /24</span>
+                <strong>
+                  @if (result.sameSubnet === null) {
+                    No determinado
+                  } @else if (result.sameSubnet) {
+                    <i class="bi bi-check-circle-fill"></i>
+                    Sí
+                  } @else {
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    No
+                  }
+                </strong>
+              </div>
+
+            </div>
+
+            <h3 class="commands-heading">
+              Comandos de diagnóstico
+            </h3>
+
+            <p>
+              Ejecuta estos comandos en PowerShell o CMD
+              para realizar pruebas reales desde tu equipo.
+            </p>
+
+            <div class="commands-list">
+
+              @for (command of result.commands; track command) {
+                <div class="command-item">
+                  <code>{{ command }}</code>
+
+                  <button type="button"
+                          class="command-copy"
+                          (click)="copyResult(command)">
+                    <i class="bi bi-clipboard"></i>
+                  </button>
+                </div>
+              }
+
+            </div>
+
+            <button type="button"
+                    class="secondary-button"
+                    (click)="copyDiagnosticResult()">
+              <i class="bi bi-clipboard"></i>
+              Copiar diagnóstico completo
+            </button>
+
+            <div class="calculation-note">
+              <i class="bi bi-info-circle"></i>
+              <p>
+                Esta herramienta valida el formato de las direcciones
+                y genera comandos. No ejecuta ping, traceroute ni
+                consultas DNS desde el navegador.
+              </p>
+            </div>
+
+          </div>
+
+        }
+
+      </section>
+
+    }
+
+  </section>
+
+</div>

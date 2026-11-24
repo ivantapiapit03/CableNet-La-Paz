@@ -13,106 +13,101 @@
     </p>
   </section>
 
-  <!-- BUSCADOR -->
-  <section class="catalog-search">
-    <div class="search-box">
-      <i class="bi bi-search"></i>
+  
+<!-- BUSCADOR Y FILTROS -->
+<section class="catalog-search">
 
-      <input
-        type="text"
-        placeholder="Buscar productos, marcas o categorías"
-        (input)="onSearch($any($event.target).value)"
-      />
-    </div>
-  </section>
+  <div class="search-box">
+    <i class="bi bi-search"></i>
+
+    <input
+      type="text"
+      placeholder="Buscar productos, marcas o categorías"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+    />
+  </div>
+
+  <!-- FILTRO POR CATEGORÍA -->
+  <div class="category-filter">
+
+    <label for="categorySelect">
+      <i class="bi bi-funnel"></i>
+      Filtrar por categoría
+    </label>
+
+    <select
+      id="categorySelect"
+      class="form-select"
+      [value]="selectedCategory()"
+      (change)="onCategoryChange($any($event.target).value)"
+    >
+
+      <option value="TODAS">
+        Todas las categorías
+      </option>
+
+      @for (category of categories(); track category) {
+        <option [value]="category">
+          {{ category }}
+        </option>
+      }
+
+    </select>
+
+  </div>
+
+  <!-- LIMPIAR FILTROS -->
+  <button
+    type="button"
+    class="btn-clear-filters"
+    (click)="clearFilters()"
+    [disabled]="!searchTerm() && selectedCategory() === 'TODAS'"
+  >
+    <i class="bi bi-x-circle"></i>
+    Limpiar filtros
+  </button>
+
+</section>
+
 
   <!-- RESULTADOS -->
   <section class="catalog-results">
 
     <div class="results-header">
+
       <h2>Productos disponibles</h2>
 
       <span class="results-count">
-        {{ filteredProducts().length }} productos
+        {{ filteredProducts().length }}
+        productos
       </span>
+
     </div>
 
-    <!-- TARJETAS -->
+    <!-- TARJETAS DE PRODUCTOS -->
     <div class="product-grid">
 
       @for (product of filteredProducts(); track product.id) {
 
-        <article class="product-card">
-
-          <div class="product-image">
-
-            <img
-              [src]="product.image"
-              [alt]="product.name"
-            />
-
-            <span class="product-category">
-              {{ product.category }}
-            </span>
-
-          </div>
-
-          <div class="product-info">
-
-            <span class="product-brand">
-              {{ product.brand }}
-            </span>
-
-            <h3>{{ product.name }}</h3>
-
-            <p class="product-description">
-              {{ product.description }}
-            </p>
-
-            <div class="product-stock">
-              @if (product.stock > 0) {
-                <span class="stock-available">
-                  <i class="bi bi-check-circle"></i>
-                  Disponible: {{ product.stock }}
-                </span>
-              } @else {
-                <span class="stock-out">
-                  <i class="bi bi-x-circle"></i>
-                  Sin stock
-                </span>
-              }
-            </div>
-
-            <div class="product-footer">
-
-              <div class="product-price">
-                <small>Precio</small>
-                <strong>
-                  {{ product.price | currency:'BOB':'Bs. ':'1.2-2' }}
-                </strong>
-              </div>
-
-              <button
-                class="btn-product"
-                [disabled]="product.stock <= 0"
-                [routerLink]="['/producto', product.id]"
-              >
-                Ver producto
-                <i class="bi bi-arrow-right"></i>
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
+        <app-producto-card
+          [product]="product"
+          (verDetalle)="openProduct($event)"
+        />
 
       } @empty {
 
+        <!-- SIN RESULTADOS -->
         <div class="empty-results">
+
           <i class="bi bi-search"></i>
+
           <h3>No se encontraron productos</h3>
-          <p>Prueba con otro nombre, marca o categorÃ­a.</p>
+
+          <p>
+            Prueba con otro nombre, marca o categoría.
+          </p>
+
         </div>
 
       }

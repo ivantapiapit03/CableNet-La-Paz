@@ -1,0 +1,86 @@
+
+<article class="product-card">
+
+  <!-- IMAGEN -->
+  <div class="product-image">
+    <img
+      [src]="product().image"
+      [alt]="product().name"
+    />
+
+    <span class="product-category">
+      {{ product().category }}
+    </span>
+  </div>
+
+  <!-- INFORMACIÓN -->
+  <div class="product-info">
+
+    <span class="product-brand">
+      {{ product().brand }}
+    </span>
+
+    <h3>{{ product().name }}</h3>
+
+    <p class="product-description">
+      {{ product().description }}
+    </p>
+
+    <!-- PRESENTACIÓN COMERCIAL -->
+    @if (product().presentation) {
+      <div class="product-presentation">
+        <i class="bi bi-box-seam"></i>
+        {{ product().presentation }}
+      </div>
+    }
+
+    <!-- STOCK -->
+    <div class="product-stock">
+
+      @if (product().stock > 0) {
+        <span class="stock-available">
+          <i class="bi bi-check-circle"></i>
+          Disponible:
+          {{ product().stock }}
+          {{ product().unit || 'unidades' }}
+        </span>
+      } @else {
+        <span class="stock-out">
+          <i class="bi bi-x-circle"></i>
+          Sin stock
+        </span>
+      }
+
+    </div>
+
+    <!-- PRECIO Y BOTÓN -->
+    <div class="product-footer">
+
+      <div class="product-price">
+        <small>
+          {{ product().unit === 'caja' ? 'Precio por caja' : 'Precio' }}
+        </small>
+
+        <strong>
+          {{ product().price | currency:'BOB':'Bs. ':'1.2-2' }}
+        </strong>
+
+        @if (product().unit === 'caja') {
+          <span class="price-unit">/ caja</span>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="btn-product"
+        [disabled]="product().stock <= 0"
+        (click)="onVerDetalle()"
+      >
+        Ver producto
+        <i class="bi bi-arrow-right"></i>
+      </button>
+
+    </div>
+
+  </div>
+</article>

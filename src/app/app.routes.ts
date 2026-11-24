@@ -7,6 +7,7 @@ import { Carrito } from './pages/carrito/carrito';
 import { Pedido } from './pages/pedido/pedido';
 import { Historial } from './pages/historial/historial';
 import { DetallePedido } from './pages/detalle-pedido/detalle-pedido';
+import { Herramientas } from './pages/herramientas/herramientas';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,10 @@ export const routes: Routes = [
   {
     path: 'pedidos/:id',
     component: DetallePedido
+  },
+  {
+    path: 'herramientas',
+    component: Herramientas
   },
   {
     path: '**',
