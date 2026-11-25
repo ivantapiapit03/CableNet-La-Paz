@@ -1,9 +1,15 @@
 
 import { Component, computed, inject, signal } from '@angular/core';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es-BO';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+
 import { Product } from '../../core/models/product.model';
 import { ProductService } from '../../core/services/product.service';
+
+registerLocaleData(localeEs, 'es-BO');
+
 
 @Component({
   selector: 'app-inventario',

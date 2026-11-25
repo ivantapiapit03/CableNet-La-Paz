@@ -2,6 +2,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { OrderService } from '../../core/services/order.service';
 import { Order } from '../../core/models/order.model';
@@ -22,40 +23,57 @@ export class DetallePedido {
   private readonly route = inject(ActivatedRoute);
   private readonly orderService = inject(OrderService);
 
-  // ID del pedido obtenido desde la URL
-  orderId = Number(this.route.snapshot.paramMap.get('id'));
-
-  // Pedido seleccionado
-  order = computed<Order | undefined>(() =>
-    this.orderService.getOrderById(this.orderId)
+  // Escuchar cambios del parámetro ID de la URL
+  private readonly routeParams = toSignal(
+    this.route.paramMap,
+    { initialValue: this.route.snapshot.paramMap }
   );
 
-  // Verificar si existe el pedido
-  isOrderFound = computed(() =>
+  // Obtener y validar el identificador
+  readonly orderId = computed(() => {
+    const id = Number(this.routeParams().get('id'));
+
+    return Number.isSafeInteger(id) && id > 0
+      ? id
+      : null;
+  });
+
+  // Recuperar el pedido seleccionado
+  readonly order = computed<Order | undefined>(() => {
+    const id = this.orderId();
+
+    if (id === null) {
+      return undefined;
+    }
+
+    return this.orderService.getOrderById(id);
+  });
+
+  // Comprobar existencia
+  readonly isOrderFound = computed(() =>
     this.order() !== undefined
   );
 
-  // Mensaje de resultado de la cancelación
-  cancelMessage = signal('');
+  // Mensaje de cancelación
+  readonly cancelMessage = signal('');
 
   // Cancelar pedido
   cancelOrder(): void {
 
     const currentOrder = this.order();
 
-    // Verificar que el pedido exista
     if (!currentOrder) {
       this.cancelMessage.set('No se encontró el pedido.');
       return;
     }
 
-    // Evitar cancelar pedidos que ya fueron cancelados
     if (currentOrder.status !== 'PENDIENTE') {
-      this.cancelMessage.set('Este pedido ya no puede ser cancelado.');
+      this.cancelMessage.set(
+        'Este pedido ya no puede ser cancelado.'
+      );
       return;
     }
 
-    // Solicitar confirmación al usuario
     const confirmed = confirm(
       `¿Estás seguro de cancelar el pedido #${currentOrder.id}?`
     );
@@ -64,8 +82,9 @@ export class DetallePedido {
       return;
     }
 
-    // Ejecutar cancelación desde el servicio
-    const cancelled = this.orderService.cancelOrder(currentOrder.id);
+    const cancelled = this.orderService.cancelOrder(
+      currentOrder.id
+    );
 
     if (cancelled) {
       this.cancelMessage.set(
@@ -76,7 +95,5 @@ export class DetallePedido {
         'No fue posible cancelar el pedido. Verifica su estado.'
       );
     }
-
   }
-
 }

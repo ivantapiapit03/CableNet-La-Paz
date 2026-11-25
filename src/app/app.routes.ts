@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 
 import { Inicio } from './pages/inicio/inicio';
@@ -8,6 +9,7 @@ import { Pedido } from './pages/pedido/pedido';
 import { Historial } from './pages/historial/historial';
 import { DetallePedido } from './pages/detalle-pedido/detalle-pedido';
 import { Herramientas } from './pages/herramientas/herramientas';
+import { Inventario } from './pages/inventario/inventario';
 
 export const routes: Routes = [
   {
@@ -41,6 +43,10 @@ export const routes: Routes = [
   {
     path: 'herramientas',
     component: Herramientas
+  },
+  {
+    path: 'inventario',
+    component: Inventario
   },
   {
     path: '**',
