@@ -14,7 +14,7 @@ registerLocaleData(localeEs, 'es-BO');
 @Component({
   selector: 'app-inventario',
   standalone: true,
-  imports: [FormsModule, CurrencyPipe],
+  imports: [FormsModule, CurrencyPipe, RouterLink],
   templateUrl: './inventario.html',
   styleUrl: './inventario.css'
 })
