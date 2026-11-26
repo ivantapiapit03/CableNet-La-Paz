@@ -1,59 +1,76 @@
-# CableNetLapaz
+﻿# CableNet La Paz
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.3.0.
+**Sistema de gestión de ventas e inventario de cableado estructurado**
 
-## Development server
+## Información del proyecto
 
-To start a local development server, run:
+- **Nombre del proyecto:** CableNet La Paz
+- **Autor y desarrollador:** Ivan Tapia Mamani
+- **Tipo de proyecto:** Aplicación web
+- **Framework:** Angular 22
+- **Lenguaje:** TypeScript
+- **Interfaz:** Bootstrap 5 y Bootstrap Icons
+- **Persistencia:** IndexedDB y LocalStorage
+- **Control de versiones:** Git y GitHub
+
+## Descripción
+
+CableNet La Paz es una aplicación web desarrollada para gestionar productos de cableado estructurado, controlar existencias, administrar el carrito de compras y registrar pedidos.
+
+El sistema permite consultar productos, visualizar sus características, gestionar el inventario y realizar seguimiento de los pedidos.
+
+## Autor
+
+**Desarrollado por: Ivan Tapia Mamani**
+
+Repositorio oficial:
+https://github.com/ivantapiapit03/CableNet-La-Paz
+
+## Requisitos previos
+
+- Node.js
+- npm
+- Angular CLI compatible con Angular 22
+
+## Instalación y ejecución
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/ivantapiapit03/CableNet-La-Paz.git
+cd CableNet-La-Paz
+```
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Iniciar el servidor:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir http://localhost:4200/
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Compilación
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Pruebas unitarias
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Repositorio GitHub
 
-For end-to-end (e2e) testing, run:
+https://github.com/ivantapiapit03/CableNet-La-Paz
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**CableNet La Paz — Proyecto desarrollado por Ivan Tapia Mamani.**
